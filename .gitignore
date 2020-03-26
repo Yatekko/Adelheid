@@ -1,6 +1,8 @@
 *.conf
 *.lua
 *.txt
+*.bin
+*.lock
 
 # Compiled class file
 *.class
@@ -25,15 +27,3 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-.gradle/5.2.1/executionHistory/executionHistory.lock
-
-.gradle/5.2.1/fileContent/fileContent.lock
-
-.gradle/5.2.1/fileHashes/fileHashes.lock
-
-.gradle/5.2.1/javaCompile/classAnalysis.bin
-
-.gradle/5.2.1/javaCompile/javaCompile.lock
-
-.gradle/buildOutputCleanup/buildOutputCleanup.lock

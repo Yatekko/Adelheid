@@ -17,11 +17,12 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'net.dv8tion:JDA:4.1.0_89'
+    compile 'net.dv8tion:JDA:4.1.1_124'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.0'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.0'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
     compile group: 'com.typesafe', name: 'config', version: '1.4.0'
+    compile 'com.jagrosh:jda-utilities-command:3.0.2'
 }

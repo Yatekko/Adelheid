@@ -1,5 +1,9 @@
 // https://discordapp.com/api/oauth2/authorize?client_id=661731281037688863&scope=bot&permissions=8
 
+import Commands.*;
+import SQL.SQL;
+import com.jagrosh.jdautilities.command.CommandClient;
+import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import net.dv8tion.jda.api.AccountType;
@@ -11,6 +15,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.concurrent.Executors;
@@ -23,15 +28,32 @@ public class Main extends ListenerAdapter
     private static String USER;
     private static String PASS;
 
-    public static void main(String[] args) throws LoginException
+    public static void main(String[] args) throws LoginException, IOException
     {
         Config conf = ConfigFactory.parseFile(new File("Adelheid.conf"));
         DB_URL = conf.getString("Adelheid.dburl");
         USER = conf.getString("Adelheid.user");
         PASS = conf.getString("Adelheid.pass");
-        JDA Bot = new JDABuilder(AccountType.BOT).setToken(conf.getString("Adelheid.token")).build();
+
+        CommandClientBuilder builder = new CommandClientBuilder()
+                .setPrefix("!")
+                .setOwnerId("396208002949971972")
+                .setActivity(Activity.playing("loading..."))
+                .addCommands(
+                        new TestCommand(DB_URL, USER, PASS),
+                        new PingCommand(),
+                        new SearchAllCommand(DB_URL, USER, PASS),
+                        new AHCommand(DB_URL, USER, PASS),
+                        new WikiCommand(),
+                        new CharacterCommand(DB_URL, USER, PASS)
+                );
+        CommandClient client = builder.build();
+
+        JDABuilder botbuilder = new JDABuilder(AccountType.BOT)
+                .setToken(conf.getString("Adelheid.token"))
+                .addEventListeners(client, new Events(DB_URL, USER, PASS));
+        JDA Bot = botbuilder.build();
         Guild guild = Bot.getGuildById(conf.getLong("Adelheid.guild"));
-        RegisterListeners(Bot);
 
         assert guild != null;
         Linkshell LS = new Linkshell(Bot, DB_URL, USER, PASS);
@@ -42,7 +64,8 @@ public class Main extends ListenerAdapter
         ////////////////////////////////////
         //  Print LS chat to #linkshell   //
         ////////////////////////////////////
-        Scheduler.scheduleWithFixedDelay(new Runnable(){
+        Scheduler.scheduleWithFixedDelay(new Runnable()
+        {
             @Override
             public void run()
             {
@@ -53,7 +76,8 @@ public class Main extends ListenerAdapter
         ////////////////////////////////////
         //        Update Bot Status       //
         ////////////////////////////////////
-        Scheduler.scheduleWithFixedDelay(new Runnable(){
+        Scheduler.scheduleWithFixedDelay(new Runnable()
+        {
             @Override
             public void run()
             {
@@ -105,10 +129,6 @@ public class Main extends ListenerAdapter
         }, 5, 30, TimeUnit.SECONDS);
     }
 
-    private static void RegisterListeners(JDA Bot)
-    {
-        Bot.addEventListener(new Events(DB_URL, USER, PASS));
-    }
     private static int UpdatePlayerCount(int count) throws SQLException
     {
         SQL sql = new SQL(DB_URL, USER, PASS);
