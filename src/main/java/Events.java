@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /*
  TODO:  Make !help command, and possibly alternate bot's status between online players and use of help command.
- TODO:  Replace "SQL.SQL Error" in branches of code where the server is offline with an offline message.
+ TODO:  Replace "SQL Error" in branches of code where the server is offline with an offline message.
  TODO:  Make a function to show which nation is in the lead for a given area (e.g. !nation [zone])
  TODO:  Add nation rank in character command, possibly as a non-inline thing between the name and jobs.
 */
@@ -44,74 +44,6 @@ public class Events extends ListenerAdapter
     {
         if (event.getGuild().getId().equals("656526482037800970") && !event.getChannel().getId().equals("669344148846936065"))
             Log.info(event.getChannel().getName() + " - " + Objects.requireNonNull(event.getGuild().getMemberById(event.getAuthor().getId())).getEffectiveName() + ": " + event.getMessage().getContentDisplay());
-/*
-        if (!event.getMessage().getContentDisplay().startsWith("!") || event.getAuthor().isBot()) return;    // Message is from a bot (possibly ourself) or message is not a command.
-
-        // getRawContent() is an atomic getter
-        // getContent() is a lazy getter which modifies the content for e.g. console view (strip discord formatting)
-
-        if (event.getMessage().getContentRaw().toLowerCase().startsWith("!ah "))
-        {
-            try {
-                Commands.AHCommand ah = new Commands.AHCommand(event, DB_URL, USER, PASS);
-            }
-            catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        if (event.getMessage().getContentRaw().equalsIgnoreCase("!search all") && event.getAuthor().getId().equals("396208002949971972"))  // Display all players online.  Admin use only.
-        {
-            SQL.SQL sql = new SQL.SQL(DB_URL, USER, PASS);
-            String players = "";
-
-            try
-            {
-                players = sql.searchPlayers();
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-
-            if (players.equals("*-----------*-------------------*------------------------------*\n|    Job    |     Character     |           Location           |\n*-----------*-------------------*------------------------------*\n*-----------*-------------------*------------------------------*"))
-            {
-                event.getChannel().sendMessage("No players online.").queue();
-            }
-            else
-            {
-                event.getChannel().sendMessage("```" + players + "```").queue();
-            }
-            return;
-        }
-
-        if (event.getMessage().getContentRaw().toLowerCase().startsWith("!wiki"))  // Search the FFXI wiki
-        {
-            try
-            {
-                Commands.WikiCommand wiki = new Commands.WikiCommand(event);  // Search the FFXI wiki for the term(s) after "!wiki"
-            } catch (MalformedURLException e)
-            {
-                event.getChannel().sendMessage("Invalid search term.").queue();
-            } catch (IOException e)
-            {
-                event.getChannel().sendMessage("Something broke. (IOException)").queue();
-            }
-            catch (ArrayIndexOutOfBoundsException e)
-            {
-                event.getChannel().sendMessage("No results.").queue();
-            }
-            return;
-        }
-
-        if (event.getMessage().getContentRaw().toLowerCase().startsWith("!character"))  // Get or set character of user or get character of another based on usage.
-        {
-            try {
-                Character character = new Character(event, DB_URL, USER, PASS);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-*/
     }
 
     @Override
