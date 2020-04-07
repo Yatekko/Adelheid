@@ -149,7 +149,7 @@ public class Events extends ListenerAdapter
             catch (SQLException e)
             {
                 e.printStackTrace();
-                event.getChannel().sendMessage("SQL.SQL Connection Error.").queue();
+                event.getChannel().sendMessage("SQL Connection Error.").queue();
                 return;
             }
             try
@@ -188,7 +188,7 @@ public class Events extends ListenerAdapter
                                 event.getChannel().sendMessage("You have been assigned the Bastok role.").queue();
                                 break;
                             case "2":
-                                guild.addRoleToMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).queue();
+                                guild.addRoleToMember((Objects.requireNonNull(guild.getMember(event.getAuthor()))), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).queue();
                                 event.getChannel().sendMessage("You have been assigned the Windurst role.").queue();
                                 break;
                             default:
@@ -205,7 +205,7 @@ public class Events extends ListenerAdapter
             catch (SQLException e)  // No character.
             {
                 e.printStackTrace();
-                event.getChannel().sendMessage("SQL.SQL Error.").queue();
+                event.getChannel().sendMessage("SQL Error.").queue();
                 return;
             }
         }

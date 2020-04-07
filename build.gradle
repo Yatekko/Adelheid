@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-mainClassName = 'Main'
+mainClassName = 'Adelheid'
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -25,4 +25,5 @@ dependencies {
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
     compile group: 'com.typesafe', name: 'config', version: '1.4.0'
     compile 'com.jagrosh:jda-utilities-command:3.0.2'
+    compile 'com.jagrosh:jda-utilities-menu:3.0.2'
 }

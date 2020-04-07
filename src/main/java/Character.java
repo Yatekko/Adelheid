@@ -29,7 +29,7 @@ public class Character
                     rs = st.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    event.getChannel().sendMessage("SQL.SQL Connection Error.").queue();
+                    event.getChannel().sendMessage("SQL Connection Error.").queue();
                     assert con != null;
                     con.close();
                     return;
@@ -111,7 +111,7 @@ public class Character
                     }
                     embed.setTitle(character + " the " + gender + race);
                 } catch (SQLException e) {
-                    event.getChannel().sendMessage("SQL.SQL Error.").queue();
+                    event.getChannel().sendMessage("SQL Error.").queue();
                     con.close();
                     return;
                 }
@@ -137,7 +137,7 @@ public class Character
                     rs = st.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    event.getChannel().sendMessage("SQL.SQL Connection Error.").queue();
+                    event.getChannel().sendMessage("SQL Connection Error.").queue();
                     return;
                 }
                 try {
@@ -215,7 +215,7 @@ public class Character
                     }
                     embed.setTitle(character + " the " + gender + race);
                 } catch (SQLException e) {
-                    event.getChannel().sendMessage("SQL.SQL Error.").queue();
+                    event.getChannel().sendMessage("SQL Error.").queue();
                     con.close();
                     return;
                 }
@@ -241,7 +241,7 @@ public class Character
                     rs = st.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    event.getChannel().sendMessage("SQL.SQL Error.").queue();
+                    event.getChannel().sendMessage("SQL Error.").queue();
                     return;
                 }
                 try {
@@ -318,7 +318,7 @@ public class Character
                             embed.addField(job, rs.getString(job.toLowerCase()), true);
                     }
                 } catch (SQLException e) {
-                    event.getChannel().sendMessage("SQL.SQL Error.").queue();
+                    event.getChannel().sendMessage("SQL Error.").queue();
                     con.close();
                     return;
                 }
@@ -340,7 +340,7 @@ public class Character
                     rs = st.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    event.getChannel().sendMessage("SQL.SQL Connection Error.").queue();
+                    event.getChannel().sendMessage("SQL Connection Error.").queue();
                     con.close();
                     return;
                 }
@@ -387,7 +387,7 @@ public class Character
                                 }
                                 catch (SQLException e)
                                 {
-                                    event.getChannel().sendMessage("Unexpected SQL.SQL Error.").queue();
+                                    event.getChannel().sendMessage("Unexpected SQL Error.").queue();
                                     e.printStackTrace();
                                     return;
                                 }

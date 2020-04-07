@@ -4,6 +4,7 @@ import Commands.*;
 import SQL.SQL;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import net.dv8tion.jda.api.AccountType;
@@ -15,35 +16,36 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Main extends ListenerAdapter
+public class Adelheid extends ListenerAdapter
 {
     private static String DB_URL;
     private static String USER;
     private static String PASS;
+    private static EventWaiter waiter;
 
-    public static void main(String[] args) throws LoginException, IOException
+    public static void main(String[] args) throws LoginException
     {
         Config conf = ConfigFactory.parseFile(new File("Adelheid.conf"));
         DB_URL = conf.getString("Adelheid.dburl");
         USER = conf.getString("Adelheid.user");
         PASS = conf.getString("Adelheid.pass");
+        waiter = new EventWaiter();
 
         CommandClientBuilder builder = new CommandClientBuilder()
                 .setPrefix("!")
                 .setOwnerId("396208002949971972")
                 .setActivity(Activity.playing("loading..."))
                 .addCommands(
-                        new TestCommand(DB_URL, USER, PASS),
+                        new TestCommand(waiter, DB_URL, USER, PASS),
                         new PingCommand(),
                         new SearchAllCommand(DB_URL, USER, PASS),
-                        new AHCommand(DB_URL, USER, PASS),
+                        new AHCommand(waiter, DB_URL, USER, PASS),
                         new WikiCommand(),
                         new CharacterCommand(DB_URL, USER, PASS)
                 );
@@ -51,9 +53,10 @@ public class Main extends ListenerAdapter
 
         JDABuilder botbuilder = new JDABuilder(AccountType.BOT)
                 .setToken(conf.getString("Adelheid.token"))
-                .addEventListeners(client, new Events(DB_URL, USER, PASS));
+                .addEventListeners(client, waiter);
         JDA Bot = botbuilder.build();
         Guild guild = Bot.getGuildById(conf.getLong("Adelheid.guild"));
+        RegisterListeners(Bot);
 
         assert guild != null;
         Linkshell LS = new Linkshell(Bot, DB_URL, USER, PASS);
@@ -129,13 +132,16 @@ public class Main extends ListenerAdapter
         }, 5, 30, TimeUnit.SECONDS);
     }
 
+    private static void RegisterListeners(JDA Bot)
+    {
+        Bot.addEventListener(new Events(DB_URL, USER, PASS));
+    }
     private static int UpdatePlayerCount(int count) throws SQLException
     {
         SQL sql = new SQL(DB_URL, USER, PASS);
         count = sql.countPlayers(count);
         return count;
     }
-
     private static int getHoursUntilTarget(int targetHour)
     {
         Calendar calendar = Calendar.getInstance();
