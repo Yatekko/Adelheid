@@ -1,3 +1,5 @@
+package SQL;
+
 import com.mysql.cj.exceptions.CJCommunicationsException;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import net.dv8tion.jda.api.entities.Member;
@@ -8,9 +10,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class SQL extends ListenerAdapter {
+public class SQL extends ListenerAdapter
+{
     private static String DB_URL, USER, PASS;
-   // private String DB_URL, USER, PASS;
 
 
     public SQL(String url, String user, String pass)
@@ -106,10 +108,10 @@ public class SQL extends ListenerAdapter {
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-            return "SQL Error.";
+            return "SQL.SQL Error.";
         } catch (Exception e) {
             // Server (Brian's computer) is down most likely
-            System.out.println("Could not connect to SQL database.  Server most likely offline.");
+            System.out.println("Could not connect to SQL.SQL database.  Server most likely offline.");
         } finally {
             //finally block used to close resources
             try {
@@ -122,7 +124,7 @@ public class SQL extends ListenerAdapter {
                     con.close();
             } catch (SQLException se) {
                 se.printStackTrace();
-                return "SQL Error.";
+                return "SQL.SQL Error.";
             }//end finally try
         }//end try
         assert con != null;

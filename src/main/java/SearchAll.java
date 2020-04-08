@@ -1,5 +1,5 @@
+import SQL.SQL;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.sql.SQLException;
