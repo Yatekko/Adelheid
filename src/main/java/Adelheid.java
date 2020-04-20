@@ -81,35 +81,23 @@ public class Adelheid extends ListenerAdapter
         ////////////////////////////////////
         Scheduler.scheduleWithFixedDelay(new Runnable()
         {
-            boolean help = false;
-
             @Override
             public void run()
             {
-                if (help)
+                int count = 0;
+                try
                 {
-                    int count = 0;
-                    try
-                    {
-                        count = UpdatePlayerCount(count);
-                    }
-                    catch (SQLException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    if (count != -1)
-                        Bot.getPresence().setPresence(Activity.playing("with " + count + " player(s)"), false);
-                    else
-                        Bot.getPresence().setPresence(Activity.playing("Error retrieving player count"), false);
-                    help = false;
+                    count = UpdatePlayerCount(count);
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
                 }
+                if (count != -1)
+                    Bot.getPresence().setPresence(Activity.watching(count + " player(s) online"), false);
                 else
-                {
-                    Bot.getPresence().setPresence(Activity.playing("!help for commands"), false);
-                    help = true;
-                }
+                    Bot.getPresence().setPresence(Activity.watching("Error retrieving player count"), false);
             }
-        }, 5, 60, TimeUnit.SECONDS);
+        }, 5, 10, TimeUnit.SECONDS);
 
         ///////////////////////////////////
         //     Update Active Players     //

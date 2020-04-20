@@ -9,9 +9,6 @@ public class PingCommand extends Command
     public PingCommand()
     {
         this.name = "ping";
-        this.help = "Tests for latency.";
-        this.category = new Category("General");
-        this.cooldown = 15;
         this.userPermissions = new Permission[]{Permission.MANAGE_CHANNEL};
     }
 

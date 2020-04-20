@@ -5,6 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.exceptions.ErrorResponseException;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.sql.*;
@@ -28,8 +29,6 @@ public class CharacterCommand extends Command
     public CharacterCommand(String dbUrl, String user, String pass)
     {
         this.name = "character";
-        this.help = "Get your own character, someone else's character (either by their character name or by pinging them), or add your own character to the bot.  Examples:  !character | !character Adelheid | !character @Adelheid | !character add Adelheid";
-        this.category = new Category("General");
         this.DB_URL = dbUrl;
         this.USER = user;
         this.PASS = pass;
