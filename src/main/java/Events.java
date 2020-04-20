@@ -68,7 +68,7 @@ public class Events extends ListenerAdapter
             ResultSet rs;
             String character;
             String charID;
-            String accountID = "";
+            String accountID;
             String temp;
             String nation;
             try
@@ -106,9 +106,9 @@ public class Events extends ListenerAdapter
                         st = con.createStatement();
                         st.execute(query);
                         event.getChannel().sendMessage("Thank you.  Your account and character are now linked to your Discord ID.").queue();
-                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325874053131"))).queue();  // Bastok
-                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325559611416"))).queue();  // San d'Oria
-                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).queue();  // Windurst
+                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325874053131"))).complete();  // Bastok
+                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325559611416"))).complete();  // San d'Oria
+                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).complete();  // Windurst
                         switch (nation)
                         {
                             case "0":
@@ -131,14 +131,12 @@ public class Events extends ListenerAdapter
                 }
                 if (!Verified) {
                     event.getChannel().sendMessage("Character and account do not match.  Please try again.").queue();
-                    return;
                 }
             }
             catch (SQLException e)  // No character.
             {
                 e.printStackTrace();
                 event.getChannel().sendMessage("SQL Error.").queue();
-                return;
             }
         }
     }
