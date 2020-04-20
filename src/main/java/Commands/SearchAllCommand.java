@@ -1,8 +1,9 @@
 package Commands;
 
+import Utils.Categories;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import SQL.SQL;
+import Utils.SQL;
 
 import java.sql.SQLException;
 
@@ -21,7 +22,7 @@ public class SearchAllCommand extends Command
     {
         this.name = "search";
         this.help = "Command form of the `#whos-online` channel.";
-        this.category = new Category("Admin");
+        this.category = Categories.OWNER;
         this.ownerCommand = true;
         this.DB_URL = dbUrl;
         this.USER = user;

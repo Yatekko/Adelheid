@@ -1,5 +1,6 @@
 package Commands;
 
+import Utils.Categories;
 import com.google.gson.Gson;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -21,7 +22,7 @@ public class WikiCommand extends Command
     {
         this.name = "wiki";
         this.help = "Searches ffxiclopedia and gives you the first result of your search.  Example:  `!wiki Red Mage`";
-        this.category = new Category("General");
+        this.category = Categories.GENERAL;
     }
 
     @Override

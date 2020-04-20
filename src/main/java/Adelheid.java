@@ -1,7 +1,7 @@
 // https://discordapp.com/api/oauth2/authorize?client_id=661731281037688863&scope=bot&permissions=8
 
 import Commands.*;
-import SQL.SQL;
+import Utils.SQL;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
@@ -42,12 +42,15 @@ public class Adelheid extends ListenerAdapter
                 .setOwnerId("396208002949971972")
                 .setActivity(Activity.playing("loading..."))
                 .addCommands(
-                        new TestCommand(waiter, DB_URL, USER, PASS),
-                        new PingCommand(),
+                        // Owner
                         new SearchAllCommand(DB_URL, USER, PASS),
+                        new TestCommand(waiter, DB_URL, USER, PASS),
+
+                        // General
                         new AHCommand(waiter, DB_URL, USER, PASS),
-                        new WikiCommand(),
-                        new CharacterCommand(DB_URL, USER, PASS)
+                        new CharacterCommand(DB_URL, USER, PASS),
+                        new PingCommand(),
+                        new WikiCommand()
                 );
         CommandClient client = builder.build();
 

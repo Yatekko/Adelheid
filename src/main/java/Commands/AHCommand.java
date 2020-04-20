@@ -5,6 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.OrderedMenu;
 import net.dv8tion.jda.api.EmbedBuilder;
+import Utils.Categories;
 
 import java.sql.*;
 import java.time.Instant;
@@ -26,7 +27,7 @@ public class AHCommand extends Command
     {
         this.name = "ah";
         this.help = "Search the auction house for a single item or a stack of items.  Examples:  !ah single Gold Beastcoin | !ah stack Clump of Gausebit Wildgrass";
-        this.category = new Category("General");
+        this.category = Categories.GENERAL;
         this.DB_URL = DB_URL;
         this.USER = USER;
         this.PASS = PASS;
