@@ -2,7 +2,7 @@ package Commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import SQL.SQL;
+import Utils.SQL;
 
 import java.sql.SQLException;
 
