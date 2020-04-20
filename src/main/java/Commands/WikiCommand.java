@@ -20,8 +20,6 @@ public class WikiCommand extends Command
     public WikiCommand() throws ArrayIndexOutOfBoundsException
     {
         this.name = "wiki";
-        this.help = "Searches ffxiclopedia and gives you the first result of your search.  Example:  `!wiki Red Mage`";
-        this.category = new Category("General");
     }
 
     @Override

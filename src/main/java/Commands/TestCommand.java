@@ -26,8 +26,6 @@ public class TestCommand extends Command
     public TestCommand(EventWaiter waiter, String dbUrl, String user, String pass)
     {
         this.name = "test";
-        this.help = "Command used to test features currently in development.";
-        this.category = new Category("Admin");
         this.ownerCommand = true;
         this.DB_URL = dbUrl;
         this.USER = user;

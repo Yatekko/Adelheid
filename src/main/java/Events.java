@@ -14,6 +14,13 @@ import java.sql.*;
 import java.util.List;
 import java.util.Objects;
 
+/*
+ TODO:  Make !help command, and possibly alternate bot's status between online players and use of help command.
+ TODO:  Replace "SQL Error" in branches of code where the server is offline with an offline message.
+ TODO:  Make a function to show which nation is in the lead for a given area (e.g. !nation [zone])
+ TODO:  Add nation rank in character command, possibly as a non-inline thing between the name and jobs.
+*/
+
 public class Events extends ListenerAdapter
 {
     private static String DB_URL, USER, PASS;
