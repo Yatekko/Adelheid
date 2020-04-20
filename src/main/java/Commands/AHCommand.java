@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-public class AHCommand extends Command  //TODO:  Filter out single and double quotes in search terms.
+public class AHCommand extends Command
 {
     private String DB_URL;
     private String USER;
@@ -22,9 +22,11 @@ public class AHCommand extends Command  //TODO:  Filter out single and double qu
     private int stack;
     private String search;
 
-    public AHCommand(EventWaiter waiter, String DB_URL, String USER, String PASS)  // TODO:  Implement OrderedMenu in case of multiple item matches.
+    public AHCommand(EventWaiter waiter, String DB_URL, String USER, String PASS)
     {
         this.name = "ah";
+        this.help = "Search the auction house for a single item or a stack of items.  Examples:  !ah single Gold Beastcoin | !ah stack Clump of Gausebit Wildgrass";
+        this.category = new Category("General");
         this.DB_URL = DB_URL;
         this.USER = USER;
         this.PASS = PASS;
