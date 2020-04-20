@@ -1,6 +1,5 @@
 package Commands;
 
-import Utils.Categories;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
@@ -27,8 +26,6 @@ public class TestCommand extends Command
     public TestCommand(EventWaiter waiter, String dbUrl, String user, String pass)
     {
         this.name = "test";
-        this.help = "Command used to test features currently in development.";
-        this.category = Categories.OWNER;
         this.ownerCommand = true;
         this.DB_URL = dbUrl;
         this.USER = user;
