@@ -1,4 +1,4 @@
-package SQL;
+package Utils;
 
 import com.mysql.cj.exceptions.CJCommunicationsException;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
