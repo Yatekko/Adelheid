@@ -50,10 +50,9 @@ public class Adelheid extends ListenerAdapter
                         new AHCommand(waiter, DB_URL, USER, PASS),
                         new CharacterCommand(DB_URL, USER, PASS),
                         new PingCommand(),
-                        new WikiCommand(),
+                        new WikiCommand()
 
                         // Event
-                        new FanartCommand()
                 );
         CommandClient client = builder.build();
 
