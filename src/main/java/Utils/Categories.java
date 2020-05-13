@@ -16,4 +16,5 @@ public class Categories
     });
 
     public static final Category GENERAL = new Category("General", event -> true);
+    public static final Category EVENT = new Category("Event", event -> true);
 }
