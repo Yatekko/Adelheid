@@ -80,7 +80,7 @@ public class CharacterCommand extends Command
             }
             try
             {
-                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.rank 'Rank' FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.discordid = " + event.getAuthor().getId();
+                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.value / 10 'Value' FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.discordid = " + event.getAuthor().getId();
                 st2 = con.createStatement();
                 rs2 = st2.executeQuery(query);
             }
@@ -149,7 +149,7 @@ public class CharacterCommand extends Command
 
             try
             {
-                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.rank 'Rank' FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.discordid = " + ping;
+                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.value / 10 'Value', FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.discordid = " + ping;
                 st2 = con.createStatement();
                 rs2 = st2.executeQuery(query);
             }
@@ -211,7 +211,7 @@ public class CharacterCommand extends Command
 
             try
             {
-                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.rank 'Rank' FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.charname = '" + charSearch + "'";
+                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.value / 10 'Value' FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.charname = '" + charSearch + "'";
                 st2 = con.createStatement();
                 rs2 = st2.executeQuery(query);
             }
@@ -430,7 +430,7 @@ public class CharacterCommand extends Command
         embed2.setColor(color);
         embed2.setThumbnail(thumbnail);
         while(rs2.next())
-            embed2.addField(capitalize(rs2.getString("Skill")), rs2.getString("Rank"), true);
+            embed2.addField(capitalize(rs2.getString("Skill")), String.valueOf(rs2.getInt("Value")), true);
 
         return new EmbedBuilder[]{embed, embed2};
     }
