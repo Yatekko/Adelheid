@@ -26,8 +26,9 @@ public class AHCommand extends Command
     public AHCommand(EventWaiter waiter, String DB_URL, String USER, String PASS)
     {
         this.name = "ah";
-        this.help = "Search the auction house for a single item or a stack of items.  Examples:  !ah single Gold Beastcoin | !ah stack Clump of Gausebit Wildgrass";
+        this.help = "Search the auction house for a single item or a stack of items.  Normally used in the `#bot-shit` channel.  Examples:  !ah single Gold Beastcoin | !ah stack Clump of Gausebit Wildgrass";
         this.category = Categories.GENERAL;
+        this.guildOnly = false;
         this.DB_URL = DB_URL;
         this.USER = USER;
         this.PASS = PASS;
