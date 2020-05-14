@@ -149,7 +149,7 @@ public class CharacterCommand extends Command
 
             try
             {
-                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.value / 10 'Value', FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.discordid = " + ping;
+                String query = "SELECT chars.charid 'ID', chars.charname 'Character', craft_names.name 'Skill', char_skills.value / 10 'Value' FROM char_skills, chars, craft_names, discord WHERE char_skills.skillid = craft_names.skillid AND chars.charid = char_skills.charid AND chars.charid = discord.charid AND discord.discordid = " + ping;
                 st2 = con.createStatement();
                 rs2 = st2.executeQuery(query);
             }
