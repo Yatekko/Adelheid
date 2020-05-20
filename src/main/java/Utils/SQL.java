@@ -108,10 +108,10 @@ public class SQL extends ListenerAdapter
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-            return "SQL.SQL Error.";
+            return "Could not connect to SQL database.";
         } catch (Exception e) {
             // Server (Brian's computer) is down most likely
-            System.out.println("Could not connect to SQL.SQL database.  Server most likely offline.");
+            System.out.println("Could not connect to SQL database.  Server most likely offline.");
         } finally {
             //finally block used to close resources
             try {
@@ -124,7 +124,7 @@ public class SQL extends ListenerAdapter
                     con.close();
             } catch (SQLException se) {
                 se.printStackTrace();
-                return "SQL.SQL Error.";
+                return "SQL Error.";
             }//end finally try
         }//end try
         assert con != null;
