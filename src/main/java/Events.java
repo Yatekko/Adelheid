@@ -109,6 +109,7 @@ public class Events extends ListenerAdapter
                         guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325874053131"))).complete();  // Bastok
                         guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325559611416"))).complete();  // San d'Oria
                         guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).complete();  // Windurst
+                        Objects.requireNonNull(guild.getMember(event.getAuthor())).modifyNickname(character).queue();
                         switch (nation)
                         {
                             case "0":
