@@ -12,7 +12,7 @@ public class SearchAll
     public SearchAll(JDA bot, String DB_URL, String USER, String PASS)
     {
         this.sql = new SQL(DB_URL, USER, PASS);
-        channel = bot.getTextChannelById("688195963843641443");
+        channel = bot.getTextChannelById("731568470252322867");
     }
 
     public void Update()
@@ -29,11 +29,11 @@ public class SearchAll
 
         if (players.equals("*-----------*-------------------*------------------------------*\n|    Job    |     Character     |           Location           |\n*-----------*-------------------*------------------------------*\n*-----------*-------------------*------------------------------*"))
         {
-            channel.editMessageById("688285697404043346","```No players online.```").queue();
+            channel.editMessageById("733071470284111902","```No players online.```").queue();
         }
         else
         {
-            channel.editMessageById("688285697404043346","```" + players + "```").queue();
+            channel.editMessageById("733071470284111902","```" + players + "```").queue();
         }
     }
 }
