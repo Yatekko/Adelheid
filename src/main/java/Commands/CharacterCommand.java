@@ -314,12 +314,12 @@ public class CharacterCommand extends Command
                             }
                             catch (SQLException e)
                             {
-                                event.getChannel().sendMessage("Unexpected SQL.SQL Error.").queue();
+                                event.getChannel().sendMessage("Unexpected SQL Error.").queue();
                                 e.printStackTrace();
                                 return;
                             }
                             event.getMessage().delete().queueAfter(15, TimeUnit.SECONDS);
-                            event.replyInDm("For verification, what is your Dawnbreak account name? (case-sensitive)");
+                            event.replyInDm("For verification, what is your Tantalus account name? (case-sensitive)");
                             con.close();
                         }
                     } catch (ArrayIndexOutOfBoundsException f)
@@ -328,7 +328,7 @@ public class CharacterCommand extends Command
                     }
                     catch (ErrorResponseException e)
                     {
-                        event.reply("I can't send you a private message for the verification process.  Please change your settings or contact a GM for help.");
+                        event.reply("I can't send you a private message for the verification process.  Please change your Discord settings or contact a GM for help.");
                         return;
                     }
                     event.reply("We'll talk privately.", (message) -> message.delete().queueAfter(15, TimeUnit.SECONDS));
