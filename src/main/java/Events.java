@@ -36,8 +36,7 @@ public class Events extends ListenerAdapter
     @Override
     public void onGuildMemberJoin(@Nonnull GuildMemberJoinEvent event)
     {
-        event.getMember().getUser().openPrivateChannel().queue((channel) -> channel.sendMessage("Welcome to Tantalus!  I'm Adelheid, this server's helper bot!  All you need to get started is in `#server-info!`\n\nOnce you've made an account and a character, go ahead and type in any channel `!character add [name]` command, replacing `[name]` with your character's name to link your Discord and account - for example, if your character name was Adelheid, type `!character add Adelheid`.  If you have any questions, feel free to ask for help in the `#general` channel!").queue());
-        Objects.requireNonNull(event.getGuild().getTextChannelById("731564877415579671")).sendMessage("Welcome to Tantalus!  I'm Adelheid, this server's helper bot!  All you need to get started is in <#731568319706038307>\n\nOnce you've made an account and a character, go ahead and type in any channel `!character add [name]` command, replacing `[name]` with your character's name to link your Discord and account - for example, if your character name was Adelheid, type `!character add Adelheid`.  If you have any questions, feel free to ask for help!").queue();
+        event.getMember().getUser().openPrivateChannel().queue((channel) -> channel.sendMessage("Welcome to Tantalus!  I'm Adelheid, this server's helper bot!  There is an installer on our site (http://tantalus.ninja/).  If you already have the base game installed and updated, you're all set and can skip the installation.  `tantalus.ninja` is the server to connect to in Ashita / Windower with port 3306.\n\nOnce you've made an account and a character, go ahead and type in any channel `!character add [name]` command, replacing `[name]` with your character's name to link your Discord and account - for example, if your character name was Adelheid, type `!character add Adelheid`.  If you have any questions, feel free to ask for help in the `#general` channel!").queue());
     }
 
     @Override
@@ -107,6 +106,27 @@ public class Events extends ListenerAdapter
                         st = con.createStatement();
                         st.execute(query);
                         event.getChannel().sendMessage("Thank you.  Your account and character are now linked to your Discord ID.").queue();
+                        /*guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325874053131"))).complete();  // Bastok
+                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325559611416"))).complete();  // San d'Oria
+                        guild.removeRoleFromMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).complete();  // Windurst
+                        Objects.requireNonNull(guild.getMember(event.getAuthor())).modifyNickname(character).queue();
+                        switch (nation)
+                        {
+                            case "0":
+                                guild.addRoleToMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325559611416"))).queue();
+                                event.getChannel().sendMessage("You have been assigned the San d'Oria role.").queue();
+                                break;
+                            case "1":
+                                guild.addRoleToMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("668825325874053131"))).queue();
+                                event.getChannel().sendMessage("You have been assigned the Bastok role.").queue();
+                                break;
+                            case "2":
+                                guild.addRoleToMember((Objects.requireNonNull(guild.getMember(event.getAuthor()))), Objects.requireNonNull(guild.getRoleById("668825326738079765"))).queue();
+                                event.getChannel().sendMessage("You have been assigned the Windurst role.").queue();
+                                break;
+                            default:
+                                break;
+                        }*/
                         guild.addRoleToMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("731566814747689051"))).queue();
                         break;
                     }
