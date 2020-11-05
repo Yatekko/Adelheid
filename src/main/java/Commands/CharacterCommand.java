@@ -126,7 +126,7 @@ public class CharacterCommand extends Command
             Statement st, st2;
             ResultSet rs, rs2;
             String ping;
-            member = event.getGuild().getMemberById(event.getArgs().split(" ")[0].substring(1).replaceAll("[^0-9]", ""));
+            member = event.getGuild().retrieveMemberById(event.getArgs().split(" ")[0].substring(1).replaceAll("[^0-9]", "")).complete();
 
             try {
                 con = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -202,7 +202,7 @@ public class CharacterCommand extends Command
             }
             try {
                 rs.next();
-                member = event.getGuild().getMemberById(rs.getString("discordid"));
+                member = event.getGuild().retrieveMemberById(rs.getString("discordid")).complete();
             } catch (SQLException e)  // No character.
             {
                 event.getChannel().sendMessage("No user has claimed that character yet.").queue();

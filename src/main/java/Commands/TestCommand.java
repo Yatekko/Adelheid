@@ -8,6 +8,7 @@ import com.jagrosh.jdautilities.menu.OrderedMenu;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -39,34 +40,6 @@ public class TestCommand extends Command
     @Override
     protected void execute(CommandEvent event)
     {
-        //waitForConfirmation(event, "This is a test.", () -> event.reply("Test complete."));
-        MessageChannel channel = event.getJDA().getTextChannelById("688195963843641443");
-        assert channel != null;
-        channel.retrieveMessageById(channel.getLatestMessageId()).queue(chanMessage -> message = chanMessage);
-        message.editMessage("Edited.").queue();
-        return;
-    }
 
-   private void waitForConfirmation(CommandEvent event, String message, Runnable confirm)
-    {
-        new OrderedMenu.Builder()
-                .useNumbers()
-                .setChoices(CONFIRM, CANCEL, CLOCK, CLAP)
-                .setEventWaiter(waiter)
-                .setTimeout(1, TimeUnit.MINUTES)
-                .setText(message + "\n\n" + CONFIRM + " Continue\n" + CANCEL+" Cancel\n" + CLOCK + "Clock\n" + CLAP + "Clap")
-                //.setFinalAction(m -> m.delete().queue(s->{}, f->{}))
-                .setUsers(event.getAuthor())
-                .setCancel((msg) -> {msg.delete().queue();})
-                /*.setAction(re ->
-                {
-                    if(re.getName().equals(CONFIRM))
-                        confirm.run();
-                })*/
-                .setSelection((msg, i) ->
-                {
-                    event.replySuccess("Selection " + i);
-                })
-                .build().display(event.getChannel());
     }
 }

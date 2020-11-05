@@ -56,10 +56,10 @@ public class Adelheid extends ListenerAdapter
                 );
         CommandClient client = builder.build();
 
-        JDABuilder botbuilder = new JDABuilder(AccountType.BOT)
+        /*JDABuilder botbuilder = new JDABuilder(AccountType.BOT)
                 .setToken(conf.getString("Adelheid.token"))
-                .addEventListeners(client, waiter);
-        JDA Bot = botbuilder.build();
+                .addEventListeners(client, waiter);*/
+        JDA Bot = JDABuilder.createDefault(conf.getString("Adelheid.token")).addEventListeners(client, waiter).build();
         Guild guild = Bot.getGuildById(conf.getLong("Adelheid.guild"));
         RegisterListeners(Bot);
 

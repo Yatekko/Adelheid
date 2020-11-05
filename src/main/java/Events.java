@@ -44,7 +44,7 @@ public class Events extends ListenerAdapter
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event)
     {
         if (event.getGuild().getId().equals("731564877415579668"))
-            Log.info(event.getChannel().getName() + " - " + Objects.requireNonNull(event.getGuild().getMemberById(event.getAuthor().getId())).getEffectiveName() + ": " + event.getMessage().getContentDisplay());
+            Log.info(event.getChannel().getName() + " - " + Objects.requireNonNull(event.getGuild().retrieveMemberById(event.getAuthor().getId())).complete().getEffectiveName() + ": " + event.getMessage().getContentDisplay());
     }
 
     @Override
@@ -100,7 +100,7 @@ public class Events extends ListenerAdapter
                         nation = rs.getString("nation");
                         Verified = true;
                         assert guild != null;
-                        String name = Objects.requireNonNull(guild.getMemberById(event.getAuthor().getId())).getEffectiveName();
+                        String name = Objects.requireNonNull(guild.retrieveMemberById(event.getAuthor().getId()).complete()).getEffectiveName();
                         name = name.replaceAll("'", "''");
                         name = name.replaceAll("\"", "\"");
                         String query = "UPDATE discord SET chartemp = null, accid = " + accountID + ", charid = " + charID + ", charname = '" + character + "', dawnbreaknickname = '" + name + "', verified = 1 WHERE discordid = " + event.getAuthor().getId();
