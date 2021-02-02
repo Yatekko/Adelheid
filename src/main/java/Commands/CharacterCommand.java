@@ -411,7 +411,7 @@ public class CharacterCommand extends Command
                 default:
                     throw new IllegalStateException("Unexpected value: " + rs.getInt("race"));
             }
-            final String[] jobs = {"WAR", "MNK", "WHM", "BLM", "RDM", "THF", "PLD", "DRK", "BST", "RNG", "SAM", "NIN", "DRG", "SMN", "BLU", "COR", "PUP", "DNC", "SCH"};
+            final String[] jobs = {"WAR", "MNK", "WHM", "BLM", "RDM", "THF", "PLD", "DRK", "BST", "BRD", "RNG", "SAM", "NIN", "DRG", "SMN", "BLU", "COR", "PUP", "DNC", "SCH"};
             for (String job : jobs)
             {
                 if (!rs.getString(job.toLowerCase()).equals("0"))
