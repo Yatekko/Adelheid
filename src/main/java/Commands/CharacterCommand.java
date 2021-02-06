@@ -259,7 +259,7 @@ public class CharacterCommand extends Command
                 rs = st.executeQuery(query);
             } catch (SQLException e) {
                 e.printStackTrace();
-                event.getChannel().sendMessage("SQL.SQL Connection Error.").queue();
+                event.getChannel().sendMessage("SQL Connection Error.").queue();
                 try {
                     assert con != null;
                     con.close();

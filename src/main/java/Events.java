@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Objects;
 
 /*
- TODO:  Make !help command, and possibly alternate bot's status between online players and use of help command.
- TODO:  Replace "SQL Error" in branches of code where the server is offline with an offline message.
  TODO:  Make a function to show which nation is in the lead for a given area (e.g. !nation [zone])
  TODO:  Add nation rank in character command, possibly as a non-inline thing between the name and jobs.
 */
@@ -107,7 +105,8 @@ public class Events extends ListenerAdapter
                         st = con.createStatement();
                         st.execute(query);
                         event.getChannel().sendMessage("Thank you.  Your account and character are now linked to your Discord ID.").queue();
-                        guild.addRoleToMember(Objects.requireNonNull(guild.getMember(event.getAuthor())), Objects.requireNonNull(guild.getRoleById("731566814747689051"))).queue();
+                        guild.addRoleToMember(guild.retrieveMember(event.getAuthor()).complete(), Objects.requireNonNull(guild.getRoleById("731566814747689051"))).queue();
+                        guild.retrieveMember(event.getAuthor()).complete().modifyNickname(character).queue();
                         break;
                     }
                 }
